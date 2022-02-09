@@ -1,0 +1,12 @@
+@startuml
+
+autonumber
+
+"外部请求（WEB）" -> "eden-demo-mvc-web": 发送请求报文
+"eden-demo-mvc-web" -> "eden-demo-mvc-service": 调用业务逻辑层
+"eden-demo-mvc-service" -> "eden-demo-mvc-model": 调用数据访问层
+"eden-demo-mvc-model" -> "存储组件（DB）": 执行数据库读写操作
+"eden-demo-mvc-model" --> "eden-demo-mvc-service": 返回数据库执行结果
+"eden-demo-mvc-service" --> "eden-demo-mvc-web": 组装数据响应报文
+
+@enduml

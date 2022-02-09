@@ -1,0 +1,12 @@
+@startuml
+[eden-demo-mvc-start（启动入口）] --> [eden-demo-mvc-web（请求控制层）]
+[eden-demo-mvc-web（请求控制层）] --> [eden-demo-mvc-service（业务逻辑服务层）]
+[eden-demo-mvc-service（业务逻辑服务层）] --> [eden-demo-mvc-model（数据模型层）]
+
+database MySQL
+
+[APP] --> http: 前端请求
+http - [eden-demo-mvc-web（请求控制层）]: 暴露 REST 接口
+[eden-demo-mvc-model（数据模型层）] ..> MySQL : 数据持久化
+
+@enduml
