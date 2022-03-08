@@ -25,7 +25,7 @@ server:
 
 spring:
   application:
-    name: eden-demo-mvc-start
+    name: eden-demo-mvc
   data:
     redis:
       repositories:
