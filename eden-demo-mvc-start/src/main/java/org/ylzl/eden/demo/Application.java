@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.ylzl.eden.spring.framework.bootstrap.SpringBootApplicationTemplate;
 import org.ylzl.eden.spring.framework.cola.catchlog.annotation.EnableCatchLog;
-import org.ylzl.eden.spring.framework.cola.exception.annotation.EnableRestExceptionHandler;
+import org.ylzl.eden.spring.framework.error.annotation.EnableRestExceptionHandler;
 
 /**
  * Spring Boot 引导类
