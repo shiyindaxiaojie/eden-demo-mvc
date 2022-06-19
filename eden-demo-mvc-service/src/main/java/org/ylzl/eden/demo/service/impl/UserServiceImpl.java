@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.ylzl.eden.demo.model.entity.User;
 import org.ylzl.eden.demo.model.mapper.UserMapper;
 import org.ylzl.eden.demo.service.UserService;
-import org.ylzl.eden.spring.framework.cola.catchlog.annotation.CatchLog;
+import org.ylzl.eden.spring.framework.cola.catchlog.autoconfigure.CatchLog;
 
 /**
  * 用户业务逻辑实现
