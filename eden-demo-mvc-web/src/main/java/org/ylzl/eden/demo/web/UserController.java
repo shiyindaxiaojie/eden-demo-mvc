@@ -1,7 +1,7 @@
 package org.ylzl.eden.demo.web;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +16,13 @@ import org.ylzl.eden.demo.web.constant.ApiConstant;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.x
  */
+@RequiredArgsConstructor
 @Slf4j
 @RequestMapping(ApiConstant.WEB_API_PATH + "/users")
 @Controller
 public class UserController {
 
 	private final UserService userService;
-
-	public UserController(@Qualifier("userService") UserService userService) {
-		this.userService = userService;
-	}
 
 	/**
 	 * 根据主键获取用户信息
