@@ -41,5 +41,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 			.addAttribute("email", user.getEmail())
 			.addAttribute("langKey", user.getLangKey());
 	}
-
 }
