@@ -11,7 +11,7 @@
 	<artifactId>eden-demo-mvc-start</artifactId>
 	<version>2.4.13-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>eden-demo-mvc</name>
+	<name>eden-demo-mvc-start</name>
 	<description>应用启动入口</description>
 
 	<properties>
@@ -24,6 +24,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>ru.trylogic.maven.plugins</groupId>
+				<artifactId>redis-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
@@ -95,6 +99,7 @@
 									<SPRING_OUTPUT_ANSI_ENABLED>ALWAYS
 									</SPRING_OUTPUT_ANSI_ENABLED>
 									<JAVA_OPTS>-Xms256m -Xmx256m</JAVA_OPTS>
+									<ENV_OPTS/>
 									<JAVA_SLEEP>1</JAVA_SLEEP>
 								</environment>
 								<creationTime>USE_CURRENT_TIMESTAMP
@@ -152,9 +157,9 @@
 								</ports>
 								<environment>
 									<TZ>Asia/Shanghai</TZ>
-									<SPRING_OUTPUT_ANSI_ENABLED>ALWAYS
-									</SPRING_OUTPUT_ANSI_ENABLED>
+									<SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
 									<JAVA_OPTS>-Xms256m -Xmx256m</JAVA_OPTS>
+									<ENV_OPTS/>
 									<JAVA_SLEEP>1</JAVA_SLEEP>
 								</environment>
 								<creationTime>USE_CURRENT_TIMESTAMP
@@ -199,19 +204,19 @@
 
 		<!-- 测试组件 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-test</artifactId>
+			<groupId>org.ylzl</groupId>
+			<artifactId>eden-spock-spring-boot-starter</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<!-- 监控组件 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>HdrHistogram</artifactId>
+					<groupId>org.hdrhistogram</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jodd-core</artifactId>
+					<groupId>org.jodd</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 </project>
