@@ -20,7 +20,7 @@ import org.ylzl.eden.spring.framework.cola.rest.autoconfigure.EnableRestExceptio
 @EnableTransactionManagement
 @Slf4j
 @SpringBootApplication
-public class Application extends SpringBootApplicationTemplate {
+public class MvcApplication extends SpringBootApplicationTemplate {
 
 	/**
 	 * 启动入口
@@ -28,6 +28,6 @@ public class Application extends SpringBootApplicationTemplate {
 	 * @param args 命令行参数
 	 */
 	public static void main(String[] args) {
-		run(Application.class, args, WebApplicationType.SERVLET);
+		run(MvcApplication.class, args, WebApplicationType.SERVLET);
 	}
 }
