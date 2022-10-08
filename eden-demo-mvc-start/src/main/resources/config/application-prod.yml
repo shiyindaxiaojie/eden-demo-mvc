@@ -63,17 +63,4 @@ spring:
 #      key-serializer: org.apache.kafka.common.serialization.StringSerializer
 #      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
-# 分布式调度平台
-#xxl:
-#  job:
-#    enable: false
-#    access-token:
-#    admin:
-#      addresses: http://localhost:8090/xxljob
-#    executor:
-#      app-name: demo-job
-#      port: 9999
-#      log-path: /data/applogs/xxl-job/jobhandler/
-#      log-retention-days: 7
-
 
