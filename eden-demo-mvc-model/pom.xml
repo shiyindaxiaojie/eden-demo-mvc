@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.ylzl.eden.demo</groupId>
 		<artifactId>eden-demo-mvc</artifactId>
-		<version>2.4.13-SNAPSHOT</version>
+		<version>2.4.13.20221019</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-demo-mvc-model</artifactId>
-	<version>2.4.13-SNAPSHOT</version>
+	<version>2.4.13.20221019</version>
 	<packaging>jar</packaging>
 	<name>eden-demo-mvc-model</name>
 	<description>MVC数据模型层</description>
@@ -31,16 +31,6 @@
 			<groupId>org.ylzl</groupId>
 			<artifactId>eden-spock-spring-boot-starter</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>HdrHistogram</artifactId>
-					<groupId>org.hdrhistogram</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jodd-core</artifactId>
-					<groupId>org.jodd</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- 持久化组件 -->
