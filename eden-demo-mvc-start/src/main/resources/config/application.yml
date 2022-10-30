@@ -4,7 +4,7 @@ logging:
   config: classpath:log4j2.yml
   level:
     ROOT: INFO
-    ${groupId}: INFO
+    org.ylzl.eden.demo: INFO
 
 server:
   port: 8081
@@ -18,12 +18,6 @@ server:
     threads:
       io: 16
       worker: 256
-#  tomcat:
-#    max-connections: 8192 # 最大连接数
-#    accept-count: 1000 # 接收队列长度
-#    threads:
-#      max: 500 # 最大并发数
-#      min-spare: 20 # 初始线程数
 
 spring:
   application:
@@ -34,6 +28,7 @@ spring:
     redis:
       repositories:
         enabled: true
+  # 数据源
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -76,7 +71,7 @@ mybatis-plus:
 
 # 在线诊断工具
 arthas:
-  agent-id: ${symbol_dollar}{spring.application.name}@${symbol_dollar}{random.value}
+  agent-id: ${spring.application.name}@${random.value}
   tunnel-server: ws://localhost:7777/ws
   session-timeout: 1800
   telnet-port: 0
