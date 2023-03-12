@@ -3,13 +3,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.ylzl.eden.demo</groupId>
+		<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 		<artifactId>eden-demo-mvc</artifactId>
-		<version>2.4.13.20221030</version>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-demo-mvc-model</artifactId>
-	<version>2.4.13.20221030</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>eden-demo-mvc-model</name>
 	<description>MVC数据模型层</description>
@@ -22,20 +22,20 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-spring-framework</artifactId>
 		</dependency>
 
 		<!-- 测试组件 -->
 		<dependency>
-			<groupId>org.ylzl</groupId>
-			<artifactId>eden-spock-spring-boot-starter</artifactId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
+			<artifactId>eden-spring-boot-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 		<!-- 持久化组件 -->
 		<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-spring-data</artifactId>
 		</dependency>
 		<!-- HikariCP -->
@@ -57,22 +57,22 @@
 		</dependency>
 		<!-- Mybatis -->
 		<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-mybatis-spring-boot-starter</artifactId>
 		</dependency>
 		<!-- Liquibase -->
 		<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-liquibase-spring-boot-starter</artifactId>
 		</dependency>
 		<!-- Dynamic Datasource -->
 		<!--<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-dynamic-datasource-spring-boot-starter</artifactId>
 		</dependency>-->
 		<!-- Sharding JDBC -->
 		<!--<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-sharding-jdbc-spring-boot-starter</artifactId>
 		</dependency>-->
 	</dependencies>

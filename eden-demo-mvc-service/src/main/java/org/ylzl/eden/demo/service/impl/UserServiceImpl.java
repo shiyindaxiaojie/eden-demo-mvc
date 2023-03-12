@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.ylzl.eden.demo.model.entity.User;
 import org.ylzl.eden.demo.model.mapper.UserMapper;
 import org.ylzl.eden.demo.service.UserService;
-import org.ylzl.eden.spring.framework.cola.catchlog.autoconfigure.CatchLog;
 
 /**
  * 用户业务逻辑实现
@@ -15,7 +14,6 @@ import org.ylzl.eden.spring.framework.cola.catchlog.autoconfigure.CatchLog;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@CatchLog
 @Slf4j
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {

@@ -3,13 +3,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.ylzl.eden.demo</groupId>
+		<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 		<artifactId>eden-demo-mvc</artifactId>
-		<version>2.4.13.20221030</version>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-demo-mvc-start</artifactId>
-	<version>2.4.13.20221030</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>eden-demo-mvc-start</name>
 	<description>应用启动入口</description>
@@ -90,7 +90,7 @@
 	<dependencies>
 		<!-- Web 组件 -->
 		<dependency>
-			<groupId>org.ylzl.eden.demo</groupId>
+			<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 			<artifactId>eden-demo-mvc-web</artifactId>
 		</dependency>
 
@@ -101,7 +101,7 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.ylzl</groupId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
 			<artifactId>eden-spring-framework</artifactId>
 		</dependency>
 
@@ -113,12 +113,26 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>logback-classic</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logback-core</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-boot-starter-logging</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- 测试组件 -->
 		<dependency>
-			<groupId>org.ylzl</groupId>
-			<artifactId>eden-spock-spring-boot-starter</artifactId>
+			<groupId>io.github.shiyindaxiaojie</groupId>
+			<artifactId>eden-spring-boot-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
