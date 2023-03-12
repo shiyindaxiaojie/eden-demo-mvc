@@ -3,17 +3,17 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.ylzl</groupId>
+		<groupId>io.github.shiyindaxiaojie</groupId>
 		<artifactId>eden-parent</artifactId>
-		<version>2.4.13.20221030</version>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
-	<groupId>org.ylzl.eden.demo</groupId>
+	<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 	<artifactId>eden-demo-mvc</artifactId>
 	<packaging>pom</packaging>
 	<name>eden-demo-mvc</name>
-	<version>2.4.13.20221030</version>
-	<description>MVC应用架构</description>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>阿里巴巴MVC应用架构</description>
 
 	<modules>
 		<module>eden-demo-mvc-model</module>
@@ -24,35 +24,74 @@
 
 	<developers>
 		<developer>
-			<id>demo</id>
-			<name>作者</name>
-			<email>demo@ylzl.org</email>
+			<id>sion</id>
+			<name>mengxiangge</name>
+			<email>shiyindaxiaojie@gmail.com</email>
 			<roles>
+				<role>Architect</role>
 				<role>Developer</role>
 			</roles>
 		</developer>
 	</developers>
 
-	<properties>
-		<maven.deploy.skip>true</maven.deploy.skip>
-	</properties>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/shiyindaxiaojie/eden-demo-mvc</url>
+		<connection>scm:git:git://github.com/shiyindaxiaojie/eden-demo-mvc.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/shiyindaxiaojie/eden-demo-mvc.git</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/shiyindaxiaojie/eden-demo-mvc/issues</url>
+	</issueManagement>
+
+	<repositories>
+		<repository>
+			<id>sonatype-ossrh-releases</id>
+			<url>https://s01.oss.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sonatype-ossrh-snapshots</id>
+			<url>https://s01.oss.sonatype.org/content/groups/staging/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.ylzl.eden.demo</groupId>
+				<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 				<artifactId>eden-demo-mvc-model</artifactId>
-				<version>2.4.13.20221030</version>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl.eden.demo</groupId>
+				<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 				<artifactId>eden-demo-mvc-service</artifactId>
-				<version>2.4.13.20221030</version>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl.eden.demo</groupId>
+				<groupId>io.github.shiyindaxiaojie.eden.demo</groupId>
 				<artifactId>eden-demo-mvc-web</artifactId>
-				<version>2.4.13.20221030</version>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -62,14 +101,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-archetype-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

@@ -2,12 +2,9 @@ logging:
   file:
     name: ${spring.application.name}
   config: classpath:log4j2.yml
-  level:
-    ROOT: INFO
-    org.ylzl.eden.demo: INFO
 
 server:
-  port: 8081
+  port: 8083
   shutdown: graceful
   compression:
     enabled: true
@@ -23,13 +20,12 @@ spring:
   application:
     name: eden-demo-mvc
   profiles:
-    active: dev # 默认启用开发环境
+    active: local # 默认启用开发环境
   data:
     redis:
       repositories:
         enabled: true
-  # 数据源
-  datasource:
+  datasource: # 数据源
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       connectionTimeout: 5000
@@ -37,8 +33,7 @@ spring:
       maximumPoolSize: 10
       idleTimeout: 300000
       maxLifetime: 1200000
-  # 缓存数据库
-  redis:
+  redis:  # 缓存数据库
     lettuce:
       pool:
         min-idle: 1
@@ -61,16 +56,18 @@ spring:
     mode: HTML
     cache: true
 
-# ORM 组件
-mybatis-plus:
+mybatis-plus: # ORM 组件
   global-config:
     banner: false
   configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
+    call-setters-on-nulls: true
+    use-column-label: true
+  type-aliases-package: org.ylzl.eden.demo.model.mapper
 
-# 在线诊断工具
-arthas:
+arthas: # 在线诊断工具
   agent-id: ${spring.application.name}@${random.value}
   tunnel-server: ws://localhost:7777/ws
   session-timeout: 1800
