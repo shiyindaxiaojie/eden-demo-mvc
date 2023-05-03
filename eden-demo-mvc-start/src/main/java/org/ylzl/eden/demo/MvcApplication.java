@@ -1,9 +1,6 @@
 package org.ylzl.eden.demo;
 
 import lombok.extern.slf4j.Slf4j;
-
-import org.mapstruct.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

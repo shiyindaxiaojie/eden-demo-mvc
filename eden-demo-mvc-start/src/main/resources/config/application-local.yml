@@ -1,7 +1,7 @@
 spring:
   arthas: # 在线诊断
     enabled: false
-    console:  # 内存数据库
+    console: # 内存数据库
       enabled: true
       path: /h2-console
       settings:

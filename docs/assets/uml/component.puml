@@ -1,12 +1,51 @@
 @startuml
-[eden-demo-mvc-start（启动入口）] --> [eden-demo-mvc-web（请求控制层）]
-[eden-demo-mvc-web（请求控制层）] --> [eden-demo-mvc-service（业务逻辑服务层）]
-[eden-demo-mvc-service（业务逻辑服务层）] --> [eden-demo-mvc-model（数据模型层）]
 
-database MySQL
+!if %variable_exists("$THEME")
+title MVC 应用架构组件图 - $THEME theme
+!else
+title MVC 应用架构组件图
+!endif
 
-[APP] --> http: 前端请求
-http - [eden-demo-mvc-web（请求控制层）]: 暴露 REST 接口
-[eden-demo-mvc-model（数据模型层）] ..> MySQL : 数据持久化
+'skinparam BackgroundColor transparent
+
+[eden-demo-mvc-web] <<请求控制层>>
+[eden-demo-mvc-service] <<业务逻辑服务层>>
+[eden-demo-mvc-model] <<数据模型层>>
+[eden-demo-mvc-start] <<启动入口>>
+
+[eden-demo-mvc-start] --> [eden-demo-mvc-web]
+[eden-demo-mvc-web] --> [eden-demo-mvc-service]
+[eden-demo-mvc-service] --> [eden-demo-mvc-model]
+
+node "Web访问" <<客户端>>
+database "MySQL" <<数据库>>
+database "Redis" <<缓存>>
+database "MQ" <<消息队列>>
+database "Elasticsearch" <<检索引擎>>
+
+[Web访问] --> http: 前端请求
+http - [eden-demo-mvc-web]: 暴露 HTTP 接口
+[eden-demo-mvc-model] ..> MySQL : 数据持久化
+[eden-demo-mvc-model] ..> Redis : 缓存处理
+[eden-demo-mvc-model] ..> MQ : 消息处理
+[eden-demo-mvc-model] ..> Elasticsearch : 全文检索
+
+skinparam component {
+ 	backgroundColor<<请求控制层>> LightGreen
+    backgroundColor<<业务逻辑服务层>> LightGreen
+    backgroundColor<<数据模型层>> LightGreen
+    backgroundColor<<启动入口>> LightGreen
+}
+
+skinparam database {
+    backgroundColor<<数据库>> Pink
+    backgroundColor<<缓存>> Pink
+    backgroundColor<<消息队列>> Pink
+    backgroundColor<<检索引擎>> Pink
+}
+
+skinparam node {
+    backgroundColor<<客户端>> SkyBlue
+}
 
 @enduml
