@@ -6,6 +6,7 @@ import org.springframework.ui.ConcurrentModel
 import org.ylzl.eden.demo.web.UserController
 import spock.lang.Specification
 import spock.lang.Unroll
+
 /**
  * 应用启动集成测试
  */

@@ -35,7 +35,7 @@ class UserServiceImplTest extends Specification {
 		userServiceImpl.getUserById(id, model)
 
 		where:
-		model | id || expectedResult
+		model                 | id || expectedResult
 		new ConcurrentModel() | 1l || true
 	}
 }

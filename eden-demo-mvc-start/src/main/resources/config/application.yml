@@ -33,7 +33,7 @@ spring:
       maximumPoolSize: 10
       idleTimeout: 300000
       maxLifetime: 1200000
-  redis:  # 缓存数据库
+  redis: # 缓存数据库
     lettuce:
       pool:
         min-idle: 1
