@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.ylzl.eden.spring.boot.bootstrap.SpringBootApplicationHelper;
 import org.ylzl.eden.spring.framework.web.rest.annotation.EnableRestExceptionHandler;
 
-
 /**
  * Spring Boot 引导类
  *
