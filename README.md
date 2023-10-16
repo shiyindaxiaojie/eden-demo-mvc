@@ -44,7 +44,7 @@ Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系�
 
 ### 快速体验
 
-本项目默认设置了 local 环境运行，所有外部的组件依赖均为关闭状态。
+本项目默认设置了 dev 环境运行，所有外部的组件依赖均为关闭状态。
 
 1. 在项目目录下运行 `mvn install`（如果不想运行测试，可以加上 `-DskipTests` 参数）。
 2. 进入 `eden-demo-mvc-start` 目录，执行 `mvn spring-boot:run` 或者启动 `MvcApplication`
@@ -56,10 +56,7 @@ Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系�
 
 ### 微调配置
 
-**修改默认的数据源**：本项目默认使用 `H2` 内存数据库启动，基于 `Liquibase` 在项目启动时自动初始化 SQL 脚本。如果您使用的是外部的
-MySQL
-数据库，可以从此处调整下数据库的连接信息：[application-local.yml](https://github.com/shiyindaxiaojie/eden-demo-mvc/blob/main/eden-demo-mvc-start/src/main/resources/config/application-local.yml)
-，请删除任何与 `H2` 有关的配置。
+**修改默认的数据源**：本项目默认使用 `H2` 内存数据库启动，基于 `Liquibase` 在项目启动时自动初始化 SQL 脚本。如果您使用的是外部的 MySQL 数据库，可以从此处调整下数据库的连接信息：[application-dev.yml](https://github.com/shiyindaxiaojie/eden-demo-mvc/blob/main/eden-demo-mvc-start/src/main/resources/config/application-dev.yml)，请删除任何与 `H2` 有关的配置。
 
 ```yaml
 spring:
