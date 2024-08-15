@@ -4,64 +4,153 @@ Configuration:
 
   Properties:
     Property:
-      - name: file.name
-        value: $${spring:logging.file.name:-app}
-      - name: file.path
-        value: $${spring:logging.file.path:-/var/logs}
-      - name: file.pattern
-        value: "%d | %-5level | %C{1.}.%M:%L | %t | %msg%n%throwable"
-      - name: console.pattern
-        value: "%d | %-5level | %C{1.}.%M:%L | %t | %msg%n%throwable"
+      - name: APP_NAME
+        value: $${spring:spring.application.name:-eden-demo-layer}
+      - name: PROFILES
+        value: $${spring:spring.profiles.active}
+      - name: LOG_PATH
+        value: $${spring:logging.file.path:-/app/logs}
+      - name: LOG_PATTERN
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${PROFILES}] [%t] [%X{traceId}] %msg%n"
 
   Appenders:
     Console:
-      name: CONSOLE
+      name: STDOUT # 控制台
       target: SYSTEM_OUT
       PatternLayout:
-        pattern: ${console.pattern}
-    RollingFile:
-      name: ROLLING_FILE
-      ignoreExceptions: false
-      fileName: ${file.path}/${file.name}.log
-      filePattern: "${file.path}/${file.name}-%d{yyyy-MM-dd}-%i.log.gz"
-      PatternLayout:
-        pattern: ${file.pattern}
-      Policies:
-        TimeBasedTriggeringPolicy:
-          modulate: true
-          interval: 1
-        SizeBasedTriggeringPolicy:
-          size: "20MB"
-      DefaultRolloverStrategy:
-        max: 15
+        pattern: ${LOG_PATTERN}
+      Filters:
+        ThresholdFilter:
+          level: INFO
+          onMatch: ACCEPT
+          onMismatch: DENY
+        BurstFilter:
+          level: INFO
+          rate: 1000
+          maxBurst: 10000
+    RollingRandomAccessFile:
+      - name: INFO_FILE # 默认日志文件
+        fileName: ${LOG_PATH}/${APP_NAME}-info.log
+        filePattern: ${LOG_PATH}/${APP_NAME}-info-%d{yyyy-MM-dd}-%i.log.gz
+        ignoreExceptions: false
+        PatternLayout:
+          pattern: ${LOG_PATTERN}
+        Policies:
+          CronTriggeringPolicy: # 低峰期定时触发
+            schedule: 0 0 3 * * ?
+          SizeBasedTriggeringPolicy: # 基于文件大小触发
+            size: 20MB
+        DefaultRolloverStrategy:
+          Delete:  # 历史日志清除策略，保留 30 天内的日志
+            basePath: ${LOG_PATH} # 扫描目录
+            maxDepth: 1 # 扫描目录深度
+            IfFileName: # 匹配文件名
+              glob: '${APP_NAME}-info-*.log.gz'
+            IfLastModified: # 保留一周
+              age: 'P7D'
+        Filters:
+          LevelMatchFilter:
+            level: INFO
+            onMatch: ACCEPT
+            onMismatch: DENY
+          BurstFilter:
+            level: INFO
+            rate: 1000
+            maxBurst: 10000
+      - name: WARN_FILE # 告警日志文件
+        fileName: ${LOG_PATH}/${APP_NAME}-warn.log
+        filePattern: ${LOG_PATH}/${APP_NAME}-warn-%d{yyyy-MM-dd}-%i.log.gz
+        ignoreExceptions: false
+        PatternLayout:
+          pattern: ${LOG_PATTERN}
+        Policies:
+          CronTriggeringPolicy: # 低峰期定时触发
+            schedule: 0 0 3 * * ?
+          SizeBasedTriggeringPolicy: # 基于文件大小触发
+            size: 20MB
+        DefaultRolloverStrategy:
+          Delete:  # 历史日志清除策略，保留 30 天内的日志
+            basePath: ${LOG_PATH} # 扫描目录
+            maxDepth: 1 # 扫描目录深度
+            IfFileName: # 匹配文件名
+              glob: '${APP_NAME}-warn-*.log.gz'
+            IfLastModified: # 保留一周
+              age: 'P7D'
+        Filters:
+          LevelMatchFilter:
+            level: WARN
+            onMatch: ACCEPT
+            onMismatch: DENY
+          BurstFilter:
+            level: WARN
+            rate: 1000
+            maxBurst: 10000
+      - name: ERROR_FILE # 异常日志文件
+        fileName: ${LOG_PATH}/${APP_NAME}-error.log
+        filePattern: ${LOG_PATH}/${APP_NAME}-error-%d{yyyy-MM-dd}-%i.log.gz
+        ignoreExceptions: false
+        PatternLayout:
+          pattern: ${LOG_PATTERN}
+        Policies:
+          CronTriggeringPolicy: # 低峰期定时触发
+            schedule: 0 0 3 * * ?
+          SizeBasedTriggeringPolicy: # 基于文件大小触发
+            size: 20MB
+        DefaultRolloverStrategy:
+          Delete:  # 历史日志清除策略，保留 30 天内的日志
+            basePath: ${LOG_PATH} # 扫描目录
+            maxDepth: 1 # 扫描目录深度
+            IfFileName: # 匹配文件名
+              glob: '${APP_NAME}-error-*.log.gz'
+            IfLastModified: # 保留一个月
+              age: 'P30D'
+        Filters:
+          ThresholdFilter:
+            level: ERROR
+            onMatch: ACCEPT
+            onMismatch: DENY
+          BurstFilter:
+            level: ERROR
+            rate: 1000
+            maxBurst: 10000
 
   Loggers:
     Root:
       level: INFO
-      includeLocation: true
+      includeLocation: false
       AppenderRef:
-        - ref: CONSOLE
-        - ref: ROLLING_FILE
-    Logger:
-      - name: org.ylzl
+        - ref: STDOUT
+        - ref: INFO_FILE # 本地开发可以选择注释掉
+        - ref: WARN_FILE # 本地开发可以选择注释掉
+        - ref: ERROR_FILE # 本地开发可以选择注释掉
+    AsyncLogger:
+      - name: org.ylzl.eden.demo # 应用日志
         level: INFO
-      - name: com.ibatis
-        level: INFO
-      - name: com.alibaba
+      - name: org.ylzl.eden # 框架调试日志只输出到控制台
+        level: DEBUG
+      - name: MybatisSqlLog # 输出慢SQL，按需关闭
         level: WARN
       - name: org.springframework
         level: ERROR
+      - name: org.apache
+        level: ERROR
       - name: org.apache.dubbo
+        level: WARN
+      - name: org.apache.nacos
         level: WARN
       - name: org.apache.kafka
         level: WARN
       - name: org.apache.zookeeper
         level: WARN
-      - name: org.reflections.Reflections
+      - name: org.hibernate
         level: WARN
-      - name: org.jboss.resteasy
+      - name: org.jboss
+        level: WARN
+      - name: org.reflections
+        level: WARN
+      - name: com.alibaba
+        level: ERROR
+      - name: com.ibatis
         level: WARN
       - name: com.baomidou
-        level: ERROR
-      - name: org.hibernate.validator
         level: WARN

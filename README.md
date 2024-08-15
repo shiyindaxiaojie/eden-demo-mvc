@@ -1,4 +1,4 @@
-<img src="https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/icon.png" align="right" />
+<img src="https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/readme/icon.png" align="right" />
 
 [license-apache2.0]:https://www.apache.org/licenses/LICENSE-2.0.html
 
@@ -8,7 +8,7 @@
 
 # 分层架构
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/language-java-blue.svg) [![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/license-apache2.0-red.svg)][license-apache2.0] [![](https://github.com/shiyindaxiaojie/eden-demo-mvc/workflows/build/badge.svg)][github-action] [![](https://sonarcloud.io/api/project_badges/measure?project=shiyindaxiaojie_eden-demo-mvc&metric=alert_status)][sonarcloud-dashboard]
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/readme/language-java-blue.svg) [![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/readme/license-apache2.0-red.svg)][license-apache2.0] [![](https://github.com/shiyindaxiaojie/eden-demo-mvc/workflows/build/badge.svg)][github-action] [![](https://sonarcloud.io/api/project_badges/measure?project=shiyindaxiaojie_eden-demo-mvc&metric=alert_status)][sonarcloud-dashboard]
 
 本项目使用 MVC 架构构建，MVC 架构是一种面向数据模型的传统架构风格，默认上层依赖于下层，例如控制层依赖业务层、业务层又依赖数据模型层，在垂直业务领域能够满足单一职责原则，通过
 Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系统熵值，提升系统开发和运维效率。
@@ -17,7 +17,7 @@ Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系�
 
 ## 组件构成
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/eden-demo-mvc/component.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/eden-demo-mvc/component.png)
 
 * **eden-demo-mvc-dao**：数据持久层，与底层 MySQL 进行数据交互。
 * **eden-demo-mvc-service**：业务逻辑服务层
@@ -26,7 +26,7 @@ Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系�
 
 ## 运行流程
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/eden-demo-mvc/sequence.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/eden-demo-mvc/sequence.png)
 
 ## 如何构建
 
@@ -44,22 +44,19 @@ Maven 多模块化的开发模式，可以帮助降低复杂应用场景的系�
 
 ### 快速体验
 
-本项目默认设置了 local 环境运行，所有外部的组件依赖均为关闭状态。
+本项目默认设置了 dev 环境运行，所有外部的组件依赖均为关闭状态。
 
 1. 在项目目录下运行 `mvn install`（如果不想运行测试，可以加上 `-DskipTests` 参数）。
 2. 进入 `eden-demo-mvc-start` 目录，执行 `mvn spring-boot:run` 或者启动 `MvcApplication`
    类。运行成功的话，可以看到 `Spring Boot` 启动成功的界面。
-3. 本应用中已经实现了一个简单的 `RestController` 接口，可以点击 [演示接口](http://localhost:8081/api/users/1) 进行调试。
+3. 本应用中已经实现了一个简单的 `RestController` 接口，可以点击 [演示接口](http://localhost:8083/api/users/1) 进行调试。
 4. 由于目前的主流是前后端分离开发，请按需实现页面。访问 [http://localhost:8083](http://localhost:8083) 将跳转到 404 页面。
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/common/404.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/common/404.png)
 
 ### 微调配置
 
-**修改默认的数据源**：本项目默认使用 `H2` 内存数据库启动，基于 `Liquibase` 在项目启动时自动初始化 SQL 脚本。如果您使用的是外部的
-MySQL
-数据库，可以从此处调整下数据库的连接信息：[application-local.yml](https://github.com/shiyindaxiaojie/eden-demo-mvc/blob/main/eden-demo-mvc-start/src/main/resources/config/application-local.yml)
-，请删除任何与 `H2` 有关的配置。
+**修改默认的数据源**：本项目默认使用 `H2` 内存数据库启动，基于 `Liquibase` 在项目启动时自动初始化 SQL 脚本。如果您使用的是外部的 MySQL 数据库，可以从此处调整下数据库的连接信息：[application-dev.yml](https://github.com/shiyindaxiaojie/eden-demo-mvc/blob/main/eden-demo-mvc-start/src/main/resources/config/application-dev.yml)，请删除任何与 `H2` 有关的配置。
 
 ```yaml
 spring:
@@ -97,15 +94,19 @@ spring:
 
 ## 持续集成
 
-> CI/CD 工具选型：Jenkins、Zadig、Codeup、CODING
+> CI/CD 工具选型：Jenkins、Zadig、CODING、Codeup
 
 ### CODING 持续交付
 
 下图演示基于 CODING 实现持续构建、持续部署的效果
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/common/coding-cicd.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/common/coding-cicd.png)
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/common/coding-test-report.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/common/coding-test-report.png)
+
+### Codeup 持续集成
+
+> TODO, Coming soon
 
 ## 最佳实践
 
@@ -113,22 +114,21 @@ spring:
 
 在敏捷开发盛行的时代，`GitFlow` 显得力不从心，笔者为团队制定了一套简单易用的流程。
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/processon/git-action.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/processon/git-action.png)
 
 ### CAT 可观测性方案
 
 通过 `TraceId` 分析整个链路的 `HTTP` 请求耗时、`RPC` 调用情况、`Log` 业务日志、`SQL` 和 `Cache`
 执行耗时。[传送门](https://github.com/shiyindaxiaojie/cat)
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/cat/tracing.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/cat/tracing.png)
 
 ### Arthas 在线诊断工具
 
 使用动态时运行探针，自动发现服务，开箱即用，允许在低负载环境诊断你的应用。[传送门](https://github.com/shiyindaxiaojie/arthas)
 
-![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/arthas/arthas-dashboard-overview.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/images/arthas/arthas-dashboard-overview.png)
 
 ## 变更日志
 
 请查阅 [CHANGELOG.md](https://github.com/shiyindaxiaojie/eden-demo-mvc/blob/main/CHANGELOG.md)
-
