@@ -55,4 +55,4 @@ JAVA_OPTS="${JAVA_OPTS} -Dserver.port=${SERVER_PORT} -Dmanagement.server.port=${
 
 echo "The application will start in ${START_DELAY_SECS}s."
 sleep ${START_DELAY_SECS}
-exec java $JAVA_OPTS -noverify -Djava.security.egd=file:/dev/./urandom "org.springframework.boot.loader.JarLauncher" "$@"
+exec java ${JAVA_OPTS} -noverify -Djava.security.egd=file:/dev/./urandom -cp /app/resources/:/app/classes/:/app/libs/* "org.ylzl.eden.demo.MvcApplication" "$@"

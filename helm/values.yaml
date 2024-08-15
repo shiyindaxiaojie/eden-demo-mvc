@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: shiyindaxiaojie/eden-demo-layer
+  repository: shiyindaxiaojie/eden-demo-mvc
   pullPolicy: IfNotPresent
   tag: "latest"
 

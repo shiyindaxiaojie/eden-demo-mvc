@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "eden-demo-layer.fullname" . }}
+  name: {{ include "eden-demo-mvc.fullname" . }}
   labels:
-    {{- include "eden-demo-layer.labels" . | nindent 4 }}
+    {{- include "eden-demo-mvc.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "eden-demo-layer.selectorLabels" . | nindent 4 }}
+    {{- include "eden-demo-mvc.selectorLabels" . | nindent 4 }}

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "eden-demo-layer.fullname" . }}
+  name: {{ include "eden-demo-mvc.fullname" . }}
   labels:
-    {{- include "eden-demo-layer.labels" . | nindent 4 }}
+    {{- include "eden-demo-mvc.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "eden-demo-layer.fullname" . }}
+    name: {{ include "eden-demo-mvc.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "eden-demo-layer.fullname" . }}
+  name: {{ include "eden-demo-mvc.fullname" . }}
   labels:
-    {{- include "eden-demo-layer.labels" . | nindent 4 }}
+    {{- include "eden-demo-mvc.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "eden-demo-layer.selectorLabels" . | nindent 6 }}
+      {{- include "eden-demo-mvc.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "eden-demo-layer.selectorLabels" . | nindent 8 }}
+        {{- include "eden-demo-mvc.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "eden-demo-layer.serviceAccountName" . }}
+      serviceAccountName: {{ include "eden-demo-mvc.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

@@ -17,11 +17,12 @@
 
 	<properties>
 		<start-class>org.ylzl.eden.demo.MvcApplication</start-class>
+		<maven.deploy.skip>true</maven.deploy.skip>
 		<build.layers.enabled>true</build.layers.enabled>
 	</properties>
 
 	<build>
-		<finalName>${project.name}-${project.version}</finalName>
+		<finalName>${project.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -32,7 +33,7 @@
 				<artifactId>jib-maven-plugin</artifactId>
 				<configuration>
 					<from>
-						<image>openjdk:11-jdk</image>
+						<image>openjdk:11-jdk-slim</image>
 					</from>
 					<to>
 						<image>${docker.image}</image>
@@ -42,6 +43,7 @@
 						</auth>
 						<tags>
 							<tag>${project.version}</tag>
+							<tag>latest</tag>
 						</tags>
 					</to>
 					<container>
@@ -52,18 +54,28 @@
 						</entrypoint>
 						<ports>
 							<port>8080</port>
+							<port>9080</port>
 						</ports>
 						<environment>
 							<TZ>Asia/Shanghai</TZ>
-							<JAVA_OPTS>-Xms512m -Xmx512m -Xmn256m -Dserver.port=8080</JAVA_OPTS>
+							<LANG>C.UTF-8</LANG>
 							<START_DELAY_SECS>1</START_DELAY_SECS>
-							<SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
+							<JVM_XMS>1g</JVM_XMS>
+							<JVM_XMX>1g</JVM_XMX>
+							<JVM_XSS>256k</JVM_XSS>
+							<JVM_MS>128m</JVM_MS>
+							<GC_MODE>g1</GC_MODE>
+							<USE_GC_LOG>y</USE_GC_LOG>
+							<USE_HEAP_DUMP>y</USE_HEAP_DUMP>
+							<USE_LARGE_PAGES>n</USE_LARGE_PAGES>
+							<DEBUG>n</DEBUG>
+							<SPRING_PROFILES_ACTIVE>dev</SPRING_PROFILES_ACTIVE>
 						</environment>
 						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
 						<mainClass>${start-class}</mainClass>
 					</container>
 					<extraDirectories>
-						<paths>src/main/docker</paths>
+						<paths>src/main/docker/jib</paths>
 						<permissions>
 							<permission>
 								<file>/entrypoint.sh</file>
@@ -71,20 +83,29 @@
 							</permission>
 						</permissions>
 					</extraDirectories>
-					<allowInsecureRegistries>true
-					</allowInsecureRegistries>
+					<allowInsecureRegistries>true</allowInsecureRegistries>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>pl.project13.maven</groupId>
-				<artifactId>git-commit-id-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>ru.trylogic.maven.plugins</groupId>
-				<artifactId>redis-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>assembly</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<!-- Web 组件 -->
